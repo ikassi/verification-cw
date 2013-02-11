@@ -48,7 +48,89 @@
 
 \subsection*{Algebraic Form}
 \subsection*{Infinite Tree}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[level 1/.style={sibling distance=20mm},level 4/.style={sibling distance=4mm},level 3/.style={sibling distance=6mm},level/.style={sibling distance=25mm/#1},-,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick]
+      \tikzstyle{every state}=[fill=lgrey,draw=black,text=black,inner sep=1pt,minimum size=2pt]
+      \node [state] (a){$s_0$}
+	child {
+	node [state] (b) {$s_0$}
+	  child {
+	  node [state] (c) {$s_0$}
+	    child{
+	    node [state] (d) {$s_0$}
+	      child{
+	      node [] (e) {$\vdots$}
+	      }
+	      child{
+	      node [] (e) {$\vdots$}
+	      }
+	      child{
+	      node [] (e) {$\vdots$}
+	      }
+	    }
+	    child{
+	    node [state] (d) {$s_1$}
+	      child{
+	      node [] (e) {$\vdots$}
+	      }
+	    }
+	    child{
+	    node [state] (d) {$s_3$}
+	    child{
+	      node [] (e) {$\vdots$}
+	      }
+	    }
+	  }
+	  child {
+	  node [state] (c) {$s_1$}
+	    child {
+	    node [state] (d) {$s_2$}	      
+	    child {
+	    node [] (e) {$\vdots$}	      
+	    }
+	    }
+	  }	  
+	  child {
+	    node [state] (c) {$s_3$}
+	      child {
+	      node [state] (d) {$s_2$}	      
+		child {
+		node [] (e) {$\vdots$}	      
+	      }
+	    }
+	  }
+	}
+	child {
+	node [state] (b) {$s_1$}
+	  child {
+	  node [state] (c) {$s_2$}
+	    child {
+	    node [state] (d) {$s_1$}
+	      child {
+	      node [] (e) {$\vdots$}	      
+	      }
+	    }
+	  }
+	}
+	child {
+	node [state] (b) {$s_3$}
+	child {
+	node [state] (c) {$s_2$}
+	  child {
+	  node [state] (d) {$s_1$}
+	    child {
+	    node [] (e) {$\vdots$}
+	    }
+	  }
+	}
+	};
+  \end{tikzpicture}
+  \caption{Unwinding the system described by  $\mathcal{M}_1$ as an infinite tree of all computation paths beginning in $s_0$ (the first layer).}
+\end{figure}
+
 \subsection*{Satisfiability}
+
 
 \section*{Question 2}
 \section*{Question 3}
