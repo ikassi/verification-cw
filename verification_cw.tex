@@ -1,0 +1,56 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{arrows}
+\usetikzlibrary{automata}
+\definecolor{lgrey}{RGB}{190,190,190}
+\pdfinfo{%
+  /Title    (Assessed Coursework: Systems Verification 303)
+  /Author   (Ioannis Kassinopoulos)
+  /Creator  (Ioannis Kassinopoulos)
+  /Producer (Ioannis Kassinopoulos)
+  /Subject  (Systems Verification Coursework)
+  /Keywords (verfication,coursework,imperial)
+}
+
+\begin{document}
+
+\title{Assessed Coursework: Systems Verification}
+\author{Ioannis Kassinopoulos}
+\date{\today}
+\maketitle
+\section*{Question 1}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[->,>=stealth',shorten >=0.5pt,auto,node distance=2.8cm,thick]
+      \tikzstyle{every state}=[fill=lgrey,draw=black,text=black]
+
+      \node[label = above:{$r$},state]		(A) {$s_0$};
+      \node[label = above:{$p$,$t$,$r$},state]	(B) [below left of  = A]   {$s_1$};
+      \node[label = below:{$p$,$q$},state]	(C) [below right of = A]   {$s_3$};
+      \node[label = below:{$q$,$r$},state]	(D) [below right of = B]   {$s_2$};
+      
+      \path 
+	(A) edge			node{} (B)
+	(A) edge			node{} (C)
+	(A) edge	[loop below]	node{} (A)
+	(B) edge	[bend left]	node{} (D)
+	(D) edge	[bend left]	node{} (B)
+	(C) edge			node{} (D);
+      
+  \end{tikzpicture}
+  \caption{The transition system $\mathcal{M}_1$.}
+\end{figure}
+
+\subsection*{Algebraic Form}
+\subsection*{Infinite Tree}
+\subsection*{Satisfiability}
+
+\section*{Question 2}
+\section*{Question 3}
+\section*{Question 4}
+\end{document}
