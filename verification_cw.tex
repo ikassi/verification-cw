@@ -151,11 +151,16 @@ $\pi(t) = \{ s_1 \}$
 
 \subsection*{Satisfiability}
 
-
+\newpage
 \section*{Question 2}
+\newpage
 \section*{Question 3}
+\newpage
 \section*{Question 4}
-\subsection*{Truth Table}
+Let $\phi = (x_1 \wedge x_2) \vee (y_1 \wedge y_2) $, the following truth table is derived to help us with our calculations
+
+\begin{center}
+ 
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 $x_1$ & $x_2$ & $y_1$ & $y_2$ & $x_1 \wedge x_2 $ & $y_1 \wedge y_2$ & $(x_1 \wedge x_2) \vee (y_1 \wedge y_2)$ \\
@@ -179,5 +184,121 @@ $x_1$ & $x_2$ & $y_1$ & $y_2$ & $x_1 \wedge x_2 $ & $y_1 \wedge y_2$ & $(x_1 \we
 
 \hline
 \end{tabular}
+
+\end{center}
+
+\subsection*{Binary Decision Tree}
+\begin{figure}[H]
+  \label{fig:bdt}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (a){$x_1$}
+     child[dashed]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     }
+     child[solid]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     };
+ 
+  \end{tikzpicture}
+  \caption{A BDT is easily derrived from the truth table. Every non-terminal node is labelled with a variable and every terminal node is labelled with either 0 or 1.}
+\end{figure}
+
+\subsection*{ROBDD for x1 x2 y1 y2}
+\subsection*{ROBDD for x1 y1 y2 x2}
+\subsection*{Discuss how ordering impacts ROBDD}
+\subsection*{Suggest an algorithm for choosing ordering}
 
 \end{document}
