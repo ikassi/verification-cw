@@ -14,7 +14,7 @@
   /Creator  (Ioannis Kassinopoulos)
   /Producer (Ioannis Kassinopoulos)
   /Subject  (Systems Verification Coursework)
-  /Keywords (verfication,coursework,imperial)
+  /Keywords (verification,coursework,imperial)
 }
 
 \begin{document}
@@ -44,22 +44,41 @@
       
   \end{tikzpicture}
   \caption{The transition system $\mathcal{M}_1$.}
+  \label{fig:m1}
 \end{figure}
 
 \subsection*{Algebraic Form}
-asdasa
+
+A transition system $\mathcal{M}=(S,\rightarrow,L)$ is a set of states $S$ endowed with a transition relation 
+$\rightarrow$ (a binary relation on $S$), such that every $s \in  S$ has some $s'\in S$ with $s\rightarrow s'$,
+and a labeling function $L:S\rightarrow \mathcal{P}$(Atoms).
+\\[0.5cm] 
+Our system $\mathcal{M}_1$ (figure:~\ref{fig:m1}) can be described as following:
+\\[0.cm] 
+$\mathcal{P} = \{p,q,r,t\}$
+\\[0.10cm] 
+$\mathcal{M}_1 = \{\{ s_0,s_1,s_2,s_3 \} , \{ (s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1)   \} , \pi \}$
+\\[0.10cm] 
+$\pi(p) = \{s_1,s_3 \}$
+\\[0.10cm] 
+$\pi(q) = \{s_2,s_3 \}$
+\\[0.10cm] 
+$\pi(r) = \{s_0,s_1,s_2 \}$
+\\[0.10cm] 
+$\pi(t) = \{ s_1 \}$
 \subsection*{Infinite Tree}
 \begin{figure}[H]
+  \label{fig:infTree}
   \centering
-  \begin{tikzpicture}[level 2/.style={sibling distance=16mm},level 1/.style={sibling distance=24mm},level 4/.style={sibling distance=4mm},level 3/.style={sibling distance=8mm},level/.style={sibling distance=25mm/#1},-,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick]
+  \begin{tikzpicture}[level 2/.style={sibling distance=16mm},level 1/.style={sibling distance=40mm},level 4/.style={sibling distance=4mm},level 3/.style={sibling distance=8mm},level/.style={sibling distance=25mm/#1},-,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick]
       \tikzstyle{every state}=[fill=lgrey,draw=black,text=black,inner sep=3pt,minimum size=4pt]
-      \node [state] (a){$s_0$}
+      \node [label = above:{$r$},state] (a){$s_0$}
 	child {
-	node [state] (b) {$s_0$}
+	node [label = above:{$r$},state] (b) {$s_0$}
 	  child {
-	  node [state] (c) {$s_0$}
+	  node [label = above:{$r$},state] (c) {$s_0$}
 	    child{
-	    node [state] (d) {$s_0$}
+	    node [label = above:{$r$},state] (d) {$s_0$}
 	      child{
 	      node [] (e) {$\vdots$}
 	      }
@@ -71,31 +90,31 @@ asdasa
 	      }
 	    }
 	    child{
-	    node [state] (d) {$s_1$}
+	    node [label = above:{$p$,$t$,$r$},state] (d) {$s_1$}
 	      child{
 	      node [] (e) {$\vdots$}
 	      }
 	    }
 	    child{
-	    node [state] (d) {$s_3$}
+	    node [label = above:{$q$,$r$},state] (d) {$s_3$}
 	    child{
 	      node [] (e) {$\vdots$}
 	      }
 	    }
 	  }
 	  child {
-	  node [state] (c) {$s_1$}
+	  node [label = above right:{$p$,$t$,$r$},state] (c) {$s_1$}
 	    child {
-	    node [state] (d) {$s_2$}	      
+	    node [label = above right:{$p$,$q$},state] (d) {$s_2$}	      
 	    child {
 	    node [] (e) {$\vdots$}	      
 	    }
 	    }
 	  }	  
 	  child {
-	    node [state] (c) {$s_3$}
+	    node [label = above right:{$q$,$r$},state] (c) {$s_3$}
 	      child {
-	      node [state] (d) {$s_2$}	      
+	      node [label = above right:{$p$,$q$},state] (d) {$s_2$}	      
 		child {
 		node [] (e) {$\vdots$}	      
 	      }
@@ -103,11 +122,11 @@ asdasa
 	  }
 	}
 	child {
-	node [state] (b) {$s_1$}
+	node [label = above right:{$p$,$t$,$r$},state] (b) {$s_1$}
 	  child {
-	  node [state] (c) {$s_2$}
+	  node [label = above right:{$p$,$q$},state] (c) {$s_2$}
 	    child {
-	    node [state] (d) {$s_1$}
+	    node [label = above right:{$p$,$t$,$r$},state] (d) {$s_1$}
 	      child {
 	      node [] (e) {$\vdots$}	      
 	      }
@@ -115,11 +134,11 @@ asdasa
 	  }
 	}
 	child {
-	node [state] (b) {$s_3$}
+	node [label = above right:{$q$,$r$},state] (b) {$s_3$}
 	child {
-	node [state] (c) {$s_2$}
+	node [label = above right:{$p$,$q$},state] (c) {$s_2$}
 	  child {
-	  node [state] (d) {$s_1$}
+	  node [label = above right:{$p$,$t$,$r$},state] (d) {$s_1$}
 	    child {
 	    node [] (e) {$\vdots$}
 	    }
@@ -127,7 +146,7 @@ asdasa
 	}
 	};
   \end{tikzpicture}
-  \caption{Unwinding the system described by  $\mathcal{M}_1$ as an infinite tree of all computation paths beginning in $s_0$ (the first layer).}
+  \caption{Unwinding the system described by  $\mathcal{M}_1$ as an infinite tree of all computation paths beginning in $s_0$ (first layer).}
 \end{figure}
 
 \subsection*{Satisfiability}
@@ -136,4 +155,6 @@ asdasa
 \section*{Question 2}
 \section*{Question 3}
 \section*{Question 4}
+
+
 \end{document}
