@@ -293,11 +293,586 @@ $x_1$ & $x_2$ & $y_1$ & $y_2$ & $x_1 \wedge x_2 $ & $y_1 \wedge y_2$ & $(x_1 \we
      };
  
   \end{tikzpicture}
-  \caption{A BDT is easily derrived from the truth table. Every non-terminal node is labelled with a variable and every terminal node is labelled with either 0 or 1.}
+  \caption{A BDT is easily derived from the truth table. Every non-terminal node is labelled with a variable and every terminal node is labelled with either 0 or 1.}
 \end{figure}
 
-\subsection*{ROBDD for x1 x2 y1 y2}
-\subsection*{ROBDD for x1 y1 y2 x2}
+\subsection*{Reduced Ordered Binary Decision Diagrams}
+In order to reduce the size of the BDT we can produce a 
+Binary Decision Diagram which is a reduced form of the BDT.
+Making this diagram ordered over a list of variables, results in getting an Ordered Binary Decision Diagram (OBDD) which is
+then unique when it is reduced until no more reduction can occur. This reduced form is called canonical form and it can be used to
+extract equivalences since two different but equivalent Boolean functions always have identically structured Reduced Ordered Binary Decision Diagrams 
+if they have compatible variable orderings.
+\subsubsection*{Reduction Algorithm}
+\noindent In order to reduce BDTs we use iteratively the rules C1-C3 until no more reductions can occur.
+
+\begin{itemize}
+\item {\bf C1:} Removal of duplicate terminals. 
+\item {\bf C2:} Removal of redundant tests. 
+\item {\bf C3:} Removal of duplicate non-terminals. 
+\end{itemize}
+
+
+
+
+\subsubsection*{ROBDD under the $[x_1,x_2,y_1,y_2]$ ordering.}
+
+\begin{figure}[H]
+  \label{fig:robdd11}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (a){$x_1$}
+     child[dashed]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     }
+     child[solid]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     };
+ 
+  \end{tikzpicture}
+  \caption{We start with the BDT over our ordering.}
+\end{figure}
+
+
+\begin{figure}[H]
+  \label{fig:robdd12}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (a){$x_1$}
+     child[dashed]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [term] (d){$0$}
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [term] (d){$0$}
+	 }
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     }
+     child[solid]{
+      node [state] (b){$x_2$}
+      child[dashed]{
+	node [state] (c){$y_1$}
+	child[dashed]{
+	  node [term] (d){$0$}	  
+	}
+	child[solid]{
+	  node [state] (d){$y_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [term] (c){$1$}
+      }
+     };
+ 
+  \end{tikzpicture}
+  \caption{Using C2 we remove the redundant tests and eliminate the nodes leading to them. We derive the above reduced diagram.}
+\end{figure}
+
+
+\begin{figure}[H]
+  \label{fig:robdd1}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (A){$x_1$}
+     
+     child[solid]{
+      node [state] (B){$x_2$}
+      child[dashed]{
+	node [state] (C1){$y_1$}
+	child[dashed]{
+	  node [term] (D1){$0$}	  
+	}
+	child[solid]{
+	  node [state] (D2){$y_2$}
+	  child[dashed]{
+	    node [term] (E1){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (E2){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [term] (C2){$1$}
+      }
+     };
+     
+     \path 
+	(A) edge[dashed,bend right]			node{} (C1);
+	
+ 
+  \end{tikzpicture}
+  \caption{Using C3 we remove the duplicate non-terminals, redirect the incoming edges and derive the above reduced diagram.}
+\end{figure}
+
+
+\begin{figure}[H]
+  \label{fig:robdd13}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (A){$x_1$}
+     
+     child[solid]{
+      node [state] (B){$x_2$}
+      child[dashed]{
+	node [state] (C1){$y_1$}
+	child[solid]{
+	  node [state] (D2){$y_2$}
+	  child[dashed]{
+	    node [term] (E1){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (E2){$1$}	    
+	  }
+	}
+      }
+     };
+     
+     \path 
+	(A) edge[dashed,bend right]			node{} (C1)
+	(B) edge[bend left]			node{} (E2)
+	(C1) edge[dashed,bend right]			node{} (E1);
+
+ 
+  \end{tikzpicture}
+  \caption{Using C1 we remove all the duplicate terminals. This OBDD cannot be reduced any further so we can now call it the canonical of the previous diagrams.}
+\end{figure}
+
+\subsubsection*{ROBDD under the $[x_1,y_1,y_2,x_2]$ ordering.}
+
+\begin{figure}[H]
+  \label{fig:robdd21}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (a){$x_1$}
+     child[dashed]{
+      node [state] (b){$y_1$}
+      child[dashed]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$0$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     }
+     child[solid]{
+      node [state] (b){$y_1$}
+      child[dashed]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$1$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+     };
+ 
+  \end{tikzpicture}
+  \caption{We start with the BDT over our ordering.}
+\end{figure}
+
+\begin{figure}[H]
+  \label{fig:robdd22}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (a){$x_1$}
+     child[dashed]{
+      node [state] (b){$y_1$}
+      child[dashed]{
+	node [term] (c){$0$}
+      }
+      child[solid]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [term] (d){$0$}	  
+	}
+	child[solid]{
+	  node [term] (d){$1$}
+	}
+      }
+     }
+     child[solid]{
+      node [state] (b){$y_1$}
+      child[dashed]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+      }
+      child[solid]{
+	node [state] (c){$y_2$}
+	child[dashed]{
+	  node [state] (d){$x_2$}
+	  child[dashed]{
+	    node [term] (e){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (e){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [term] (d){$1$}	  
+	}
+      }
+     };
+ 
+  \end{tikzpicture}
+  \caption{Using C2 we remove the redundant tests and eliminate the nodes leading to them. We derive the above reduced diagram.}
+
+\end{figure}
+
+\begin{figure}[H]
+  \label{fig:robdd23}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (A){$x_1$}
+     child[dashed]{
+      node [state] (B1){$y_1$}
+      child[dashed]{
+	node [term] (C1){$0$}
+      }
+      child[solid]{
+	node [state] (C2){$y_2$}
+	child[dashed]{
+	  node [term] (D1){$0$}	  
+	}
+	child[solid]{
+	  node [term] (D2){$1$}
+	}
+      }
+     }
+     child[solid]{
+      node [state] (B2){$y_1$}
+      child[solid]{
+	node [state] (C3){$y_2$}
+	child[dashed]{
+	  node [state] (D5){$x_2$}
+	  child[dashed]{
+	    node [term] (E5){$0$}	    
+	  }
+	  child[solid]{
+	    node [term] (E6){$1$}	    
+	  }
+	}
+	child[solid]{
+	  node [term] (D6){$1$}	  
+	}
+      }
+     };
+     
+       \path 
+	(B2) edge[dashed,bend right]			node{} (D5);
+
+ 
+  \end{tikzpicture}
+  \caption{Using C3 we remove the duplicate non-terminals, redirect the incoming edges and derive the above reduced diagram.}
+
+\end{figure}
+\begin{figure}[H]
+  \label{fig:robdd24}
+  \centering
+  \begin{tikzpicture}[
+  level 1/.style={sibling distance=55mm},
+  level 2/.style={sibling distance=27mm},
+  level 3/.style={sibling distance=15mm},
+  level 4/.style={sibling distance=6mm},
+  -,>=stealth',shorten >=0.5pt,auto,node distance=1cm,semithick,term/.style={draw,rectangle,minimum size=4mm,inner sep=0pt,outer sep=0pt,solid,thick}]
+      \tikzstyle{every state}=[fill=white,draw=black,text=black,inner sep=3pt,minimum size=4pt,solid]
+      
+      
+     \node [state] (A){$x_1$}
+     child[dashed]{
+      node [state] (B1){$y_1$}
+      child[solid]{
+	node [state] (C2){$y_2$}
+	child[dashed]{
+	  node [term] (D1){$0$}	  
+	}
+	child[solid]{
+	  node [term] (D2){$1$}
+	}
+      }
+     }
+     child[solid]{
+      node [state] (B2){$y_1$}
+      child[solid]{
+	node [state] (C3){$y_2$}
+	child[dashed]{
+	  node [state] (D5){$x_2$}
+	  }
+      }
+     };
+     
+       \path 
+       	(B1) edge[dashed,bend right]			node{} (D1)
+       	(C3) edge[bend right]			node{} (D2)
+       	(D5) edge[dashed,bend left]			node{} (D1)
+       	(D5) edge[bend right]			node{} (D2)
+
+
+	(B2) edge[dashed,bend right]			node{} (D5);
+
+ 
+  \end{tikzpicture}
+
+\caption{Using C1 we remove all the duplicate terminals. This OBDD cannot be reduced any further so we can now call it the canonical of the previous diagrams.}
+
+\end{figure}
+
 \subsection*{Discuss how ordering impacts ROBDD}
 \subsection*{Suggest an algorithm for choosing ordering}
 
