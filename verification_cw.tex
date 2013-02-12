@@ -214,17 +214,54 @@ $\pi(t) = \{ s_1 \}$
 \subsection*{$\phi = AFq$}
 \hspace*{5mm}$SAT(AFq) = SAT_{af}(q)$ 
 \\[0.25cm] 
-\hspace*{5mm}$Y_0 = \{s_2\}$
+\hspace*{5mm}$SAT_{af}(q)$ 
 \\[0.25cm] 
-\hspace*{5mm}$Y_1 = Y_0$ 
+\hspace*{10mm}$Y_0 = \{s_2\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_1 = Y_0$ 
 \\[0.25cm] 
 \hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_2\}$
 
 
 \subsection*{$\phi = AGp \vee Afq$}
+\hspace*{5mm}$SAT(AGp) = SAT(\neg EF \neg p)$ 
+\\[0.25cm] 
+\hspace*{5mm}$SAT(EF \neg p) = SAT(E[trueU \neg p]) = SAT_{eu}(true, \neg p)$ 
+\\[0.25cm] 
+\hspace*{5mm}$SAT_{eu}(true, \neg p)$ 
+\\[0.25cm] 
+\hspace*{10mm}$W = \{s_0,s_1,s_2,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_0 = S \backslash SAT(p) = \{s_2\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_1 = \{s_1,s_2,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_2 = \{s_0,s_1,s_2,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_3 = Y_2$
+\\[0.25cm] 
+\hspace*{5mm}$SAT(\neg EF \neg p) = S \backslash SAT( EF \neg p) = \{\}$ 
+\\[0.25cm] 
+\hspace*{5mm}$SAT(AGp \vee Afq) = SAT(AGp) \cup SAT(AFq) = \{\} \cup \{s_2\} = \{s_2\}$
+\\[0.25cm] 
+\hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_2\}$
+
 \subsection*{$\phi = E(pU(AFq))$}
-
-
+\hspace*{5mm}$SAT(E[pU(AFq)]) = SAT_{eu}(p,AFq)$ 
+\\[0.25cm] 
+\hspace*{5mm}$SAT_{eu}(p,AFq)$ 
+\\[0.25cm] 
+\hspace*{10mm}$W = SAT(p) = \{s_0,s_1,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_0 = SAT(AFq) = \{s_2\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_1 = \{s_1,s_2,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_2 = \{s_0,s_1,s_2,s_3\}$
+\\[0.25cm] 
+\hspace*{10mm}$Y_3 = Y_2$
+\\[0.25cm] 
+\hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_0,s_1,s_2,s_3\}$
 
 
 
