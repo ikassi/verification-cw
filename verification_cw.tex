@@ -203,19 +203,24 @@ $\pi(t) = \{ s_1 \}$
 \\[0.25cm] 
 \hspace*{10mm} $W = \{s_0,s_1,s_2,s_3\}$ 
 \\[0.25cm] 
-\hspace*{10mm} $Y_0 = S - \{s_0,s_1,s_2,s_3\} = \{ \}$ 
+\hspace*{10mm} $Y_0 = S \backslash \{s_0,s_1,s_2,s_3\} = \{ \}$ 
 \\[0.25cm] 
 \hspace*{10mm} $Y_1 = Y_0$ 
 \\[0.25cm] 
-\hspace*{5mm} $SAT(AGEFp)=SAT(\neg EF \neg EF p) = S - SAT(EF \neg EF p) = \{s_0,s_1,s_2,s_3\}$ 
+\hspace*{4.9mm} $SAT(AGEFp)=SAT(\neg EF \neg EF p) = S\backslash SAT(EF \neg EF p) = \{s_0,s_1,s_2,s_3 \}$ 
 \\[0.25cm] 
 \hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_0,s_1,s_2,s_3\}$
 
-
-
-
-
 \subsection*{$\phi = AFq$}
+\hspace*{5mm}$SAT(AFq) = SAT_{af}(q)$ 
+\\[0.25cm] 
+\hspace*{5mm}$Y_0 = \{s_2\}$
+\\[0.25cm] 
+\hspace*{5mm}$Y_1 = Y_0$ 
+\\[0.25cm] 
+\hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_2\}$
+
+
 \subsection*{$\phi = AGp \vee Afq$}
 \subsection*{$\phi = E(pU(AFq))$}
 
