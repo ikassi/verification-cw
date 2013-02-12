@@ -49,9 +49,9 @@
 
 \subsection*{Algebraic Form}
 
-A transition system $\mathcal{M}=(S,\rightarrow,L)$ is a set of states $S$ endowed with a transition relation 
+A transition system $\mathcal{M}=(S,\rightarrow,\pi)$ is a set of states $S$ endowed with a transition relation 
 $\rightarrow$ (a binary relation on $S$), such that every $s \in  S$ has some $s'\in S$ with $s\rightarrow s'$,
-and a labeling function $L:S\rightarrow \mathcal{P}$(Atoms).
+and an inverse labeling function $\pi:\mathcal{P}\rightarrow S$.
 \\[0.5cm] 
 Our system $\mathcal{M}_1$ (figure:~\ref{fig:m1}) can be described as following:
 \\[0.cm] 
@@ -155,6 +155,29 @@ $\pi(t) = \{ s_1 \}$
 \section*{Question 2}
 \section*{Question 3}
 \section*{Question 4}
+\subsection*{Truth Table}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x_1$ & $x_2$ & $y_1$ & $y_2$ & $x_1 \wedge x_2 $ & $y_1 \wedge y_2$ & $(x_1 \wedge x_2) \vee (y_1 \wedge y_2)$ \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 & 0 & 1 & 1 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 & 1 & 1 \\
 
+\hline
+\end{tabular}
 
 \end{document}
