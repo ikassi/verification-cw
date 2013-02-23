@@ -152,17 +152,69 @@ $\pi(t) = \{ s_1 \}$
 \end{figure}
 
 
-\def\holds#1#2{$(\mathcal{M}_1,s_{#1})\models#2$}
-\def\nholds#1#2{$(\mathcal{M}_1,s_{#1})\not\models#2$}
+\def\holds#1 #2 {$(\mathcal{M}_1,s_{#1})\models$ #2}
+\def\nholds#1 #2 {$(\mathcal{M}_1,s_{#1})\not\models$ #2}
+\def\pathr{$\rho = x_0,x_1,...=$ }
+
 
 
 \subsection*{Satisfiability}
 \subsubsection*{$\phi = Ft$}
+\nholds 0 $Ft$ 
+\\[0.25cm]
+since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\in\pi(t)$
+\\[0.50cm]
+\holds 2 $Ft$
+\\[0.25cm]
+since the only path that exist is \pathr $(s_2,s_1)^+$ and for $x_i = s_1$ $\Rightarrow s_1 \in\pi(t)$
 \subsubsection*{$\phi = \neg EG r$}
 \subsubsection*{$\phi = E(tUq)$}
+\nholds 0 $E(tUq)$ 
+\\[0.25cm]
+since for every (and therefore for at least one) path \pathr $s_0,...$ at $s_0$, $s_0 \not\in \pi(t) \cup \pi(q)$.
+\\[0.25cm] therefore, since at the initial state we have neither t nor q we cannot say that a path exists starting from $s_0$ such that t until q holds.
+\\[0.50cm]
+\holds 2 $E(tUq)$
+\\[0.25cm]
+since for the only path \pathr $(s_2,s_1)^+$ we have at $x_0 = s_2$, and \holds 2 $tUq$ since $s_2 \in \pi(q)$. This means that t is always true up to the point that q gets true.
+
 \subsubsection*{$\phi = E(FGp)$}
+For this formula we first need to consider all the possible tuples of transition relation given by the $\rightarrow$ set:
+\\[0.25cm]
+$ \{(s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1) \}$ 
+\\[0.50cm]
+As we can see from the $\pi(p)$ set, no two concequtive states $x_i,x_{i+1} \in \pi(p)$ which means that for every state $s_i$: \nholds i $Gp$, \nholds i $FGp$
+and  \nholds i $E(FGp)$ \\[0.25cm]
+Therefore we can say that: \\[0.25cm]
+\nholds 0 $E(FGp)$
+\\[0.25cm]
+\nholds 2 $E(FGp)$
+\\[0.25cm]
+since no path exists which eventually gets forever p starting from either $s_0$ or $s_2$
+
 \subsubsection*{$\phi = EGr$}
+$ EGr = \neg \neg EGr $ therefore from the $\phi = \neg EGr$ solution we can deduce that:\\[0.25cm]
+\holds 0 $EGr$ since \nholds 0 $\neg EGr\:$ since $true = \neg false$
+\\[0.25cm]
+and
+\\[0.25cm]
+\holds 2 $EGr$ since \nholds 2 $\neg EGr\:$  since $true = \neg false$
 \subsubsection*{$\phi = G(r \vee q)$}
+From the model we can see that the following are true:
+\\[0.25cm]
+$s_0 \in \pi(r) \cup \pi(q) $ since $s_0 \in \pi(r)$ so \holds 0 $r \vee q$
+\\[0.25cm]
+$s_1 \in \pi(r) \cup \pi(q) $ since $s_1 \in \pi(r)$ so \holds 1 $r \vee q$
+\\[0.25cm]
+$s_2 \in \pi(r) \cup \pi(q) $ since $s_2 \in \pi(q)$ so \holds 2 $r \vee q$
+\\[0.25cm]
+$s_3 \in \pi(r) \cup \pi(q) $ since $s_3 \in \pi(q)$ so \holds 3 $r \vee q$
+\\[0.25cm]
+We can therefore say that for every state $s_i$, \holds i $G(r \vee q)$ since every path, from every state, will satisfy $r \vee q$ forever (globally).
+\\[0.25cm]
+\holds 0 $G(r \vee q)$
+\\[0.25cm]
+\holds 2 $G(r \vee q)$
 \subsubsection*{$\phi = falseUp$}
 \subsubsection*{$\phi = A(pU(EFq))$}
 
