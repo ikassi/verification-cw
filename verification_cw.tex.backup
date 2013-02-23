@@ -168,12 +168,7 @@ since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\i
 \\[0.25cm]
 since the only path that exist is \pathr $(s_2,s_1)^+$ and for $x_i = s_1$ $\Rightarrow s_1 \in\pi(t)$
 \subsubsection*{$\phi = \neg EG r$}
-$EGr =\neg AF\neg r \Rightarrow \neg EGr =\neg \neg AF\neg r= AF\neg r$ \\[0.25cm]
-\nholds 0 $AFr$ since for the path \pathr $s_0^+$ every state $x_i=s_0\in \pi(r)$ \\[0.25cm]
-$\Rightarrow$ \nholds 0 $\neg EG r$ \\[0.25cm]
-\nholds 2 $AFr$ since for the only path \pathr $(s_2,s_1)^+$ every state $x_i=s_1\in \pi(r)$ or $x_i=s_2\in \pi(r)$\\[0.25cm]
-$\Rightarrow$ \nholds 2 $\neg EG r$ 
-
+$EGr\= w$
 
 \subsubsection*{$\phi = E(tUq)$}
 \nholds 0 $E(tUq)$ 
@@ -235,7 +230,7 @@ This intuitively says for all  states $s_i$, \holds i $EFq$. \\[0.25cm]
 This means that for all paths starting from every state of our model $pUEFq$ is true since we don't care about p being true since $EFq$ is always true at the first (initial) state. \\[0.25cm]
 We can therefore deduce from the above that for all states $s_i$, \holds i  $A(pUEFq)$ and: \\[0.25cm]
 \holds 0 $A(pUEFq)$ \\[0.25cm]
-\holds 2 $A(pUEFq)$
+\holds 2 $A(pUEFq)$ \\[0.25cm]
 
 \newpage
 \section*{Question 2}
