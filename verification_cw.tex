@@ -2,6 +2,7 @@
 %\documentclass[a4paper,10pt]{scrartcl}
 
 \usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{float}
@@ -150,7 +151,20 @@ $\pi(t) = \{ s_1 \}$
   \caption{Unwinding the system described by  $\mathcal{M}_1$ as an infinite tree of all computation paths beginning in $s_0$ (first layer).}
 \end{figure}
 
+
+\def\holds#1#2{$(\mathcal{M}_1,s_{#1})\models#2$}
+\def\nholds#1#2{$(\mathcal{M}_1,s_{#1})\not\models#2$}
+
+
 \subsection*{Satisfiability}
+\subsubsection*{$\phi = Ft$}
+\subsubsection*{$\phi = \neg EG r$}
+\subsubsection*{$\phi = E(tUq)$}
+\subsubsection*{$\phi = E(FGp)$}
+\subsubsection*{$\phi = EGr$}
+\subsubsection*{$\phi = G(r \vee q)$}
+\subsubsection*{$\phi = falseUp$}
+\subsubsection*{$\phi = A(pU(EFq))$}
 
 \newpage
 \section*{Question 2}
