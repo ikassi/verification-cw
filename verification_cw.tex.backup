@@ -1,8 +1,8 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper]{article}
 %\documentclass[a4paper,10pt]{scrartcl}
 
 \usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.9in]{geometry}
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{float}
@@ -59,7 +59,7 @@ Our system $\mathcal{M}_1$ (figure:~\ref{fig:m1}) can be described as following:
 \\[0.cm] 
 $\mathcal{P} = \{p,q,r,t\}$
 \\[0.10cm] 
-$\mathcal{M}_1 = \{\{ s_0,s_1,s_2,s_3 \} , \{ (s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1)   \} , \pi \}$
+$\mathcal{M}_1 = \{\{ s_0,s_1,s_2,s_3 \} , \{ (s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_2)   \} , \pi \}$
 \\[0.10cm] 
 $\pi(p) = \{s_1,s_3 \}$
 \\[0.10cm] 
@@ -159,7 +159,7 @@ $\pi(t) = \{ s_1 \}$
 
 
 \subsection*{Satisfiability}
-\subsubsection*{$\phi = Ft$}
+\subsubsection*{(a) LTL: $\phi = Ft$}
 \nholds 0 $Ft$ 
 \\[0.25cm]
 since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\in\pi(t)$
@@ -167,10 +167,15 @@ since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\i
 \holds 2 $Ft$
 \\[0.25cm]
 since the only path that exist is \pathr $(s_2,s_1)^+$ and for $x_i = s_1$ $\Rightarrow s_1 \in\pi(t)$
-\subsubsection*{$\phi = \neg EG r$}
-$EGr\= w$
+\subsubsection*{(b) CTL: $\phi = \neg EG r$}
+$EGr =\neg AF\neg r \Rightarrow \neg EGr =\neg \neg AF\neg r= AF\neg r$ \\[0.25cm]
+\nholds 0 $AFr$ since for the path \pathr $s_0^+$ every state $x_i=s_0\in \pi(r)$ \\[0.25cm]
+$\Rightarrow$ \nholds 0 $\neg EG r$ \\[0.25cm]
+\nholds 2 $AFr$ since for the only path \pathr $(s_2,s_1)^+$ every state $x_i=s_1\in \pi(r)$ or $x_i=s_2\in \pi(r)$\\[0.25cm]
+$\Rightarrow$ \nholds 2 $\neg EG r$ 
 
-\subsubsection*{$\phi = E(tUq)$}
+
+\subsubsection*{(c) CTL: $\phi = E(tUq)$}
 \nholds 0 $E(tUq)$ 
 \\[0.25cm]
 since for every (and therefore for at least one) path \pathr $s_0,...$ at $s_0$, $s_0 \not\in \pi(t) \cup \pi(q)$.
@@ -180,7 +185,7 @@ since for every (and therefore for at least one) path \pathr $s_0,...$ at $s_0$,
 \\[0.25cm]
 since for the only path \pathr $(s_2,s_1)^+$ we have at $x_0 = s_2$, and \holds 2 $tUq$ since $s_2 \in \pi(q)$. This means that t is always true up to the point that q gets true.
 
-\subsubsection*{$\phi = E(FGp)$}
+\subsubsection*{(d) CTL*: $\phi = E(FGp)$}
 For this formula we first need to consider all the possible tuples of transition relation given by the $\rightarrow$ set:
 \\[0.25cm]
 $ \{(s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1) \}$ 
@@ -194,14 +199,14 @@ Therefore we can say that: \\[0.25cm]
 \\[0.25cm]
 since no path exists which eventually gets forever p starting from either $s_0$ or $s_2$
 
-\subsubsection*{$\phi = EGr$}
+\subsubsection*{(e) CTL: $\phi = EGr$}
 $ EGr = \neg \neg EGr $ therefore from the $\phi = \neg EGr$ solution we can deduce that:\\[0.25cm]
 \holds 0 $EGr$ since \nholds 0 $\neg EGr\:$ since $true = \neg false$
 \\[0.25cm]
 and
 \\[0.25cm]
 \holds 2 $EGr$ since \nholds 2 $\neg EGr$  since $true = \neg false$
-\subsubsection*{$\phi = G(r \vee q)$}
+\subsubsection*{(f) LTL: $\phi = G(r \vee q)$}
 From the model we can see that the following are true:
 \\[0.25cm]
 $s_0 \in \pi(r) \cup \pi(q) $ since $s_0 \in \pi(r)$ so \holds 0 $r \vee q$
@@ -217,12 +222,12 @@ We can therefore say that for every state $s_i$, \holds i $G(r \vee q)$ since ev
 \holds 0 $G(r \vee q)$
 \\[0.25cm]
 \holds 2 $G(r \vee q)$
-\subsubsection*{$\phi = falseUp$}
+\subsubsection*{(g) LTL: $\phi = falseUp$}
 \nholds 0 $falseUp$
 since $s_0 \not\in \{ \} \cup \pi(p)$ therefore since the first state of the path does not fulfill p \\[0.25cm] $\Rightarrow$ false until p cannot be true.\\[0.25cm]
 \nholds 2 $falseUp$
 since $s_2 \not\in \{ \} \cup \pi(p)$ therefore since the first state of the path does not fulfill p \\[0.25cm] $\Rightarrow$ false until p cannot be true.
-\subsubsection*{$\phi = A(pU(EFq))$}
+\subsubsection*{(h) CTL: $\phi = A(pU(EFq))$}
 First, let's find which states satisfy $EFq$ \\[0.25cm]
 $\{s_0,s_1,s_2,s_3\}$ satisfy $EFq$ since all of them are either labelled $q$ \\[0.25cm]
 or have one of their next states satisfying $q$.\\[0.25cm]
@@ -230,7 +235,7 @@ This intuitively says for all  states $s_i$, \holds i $EFq$. \\[0.25cm]
 This means that for all paths starting from every state of our model $pUEFq$ is true since we don't care about p being true since $EFq$ is always true at the first (initial) state. \\[0.25cm]
 We can therefore deduce from the above that for all states $s_i$, \holds i  $A(pUEFq)$ and: \\[0.25cm]
 \holds 0 $A(pUEFq)$ \\[0.25cm]
-\holds 2 $A(pUEFq)$ \\[0.25cm]
+\holds 2 $A(pUEFq)$
 
 \newpage
 \section*{Question 2}
@@ -1064,7 +1069,19 @@ if they have compatible variable orderings.
 
 \end{figure}
 
-\subsection*{Discuss how ordering impacts ROBDD}
-\subsection*{Suggest an algorithm for choosing ordering}
+\subsection*{How ordering impacts the ROBDD size.}
+The chosen variable ordering can have a very significant impact on the size of the ROBDD as we can see from the above. The OBDDs' 
+size tend to be very sensitive to the chosen ordering. 
+This however is not always the case and if we consider the OBDDs representing functions such as the parity functions and in principle
+the functions that are themselves independent of the order of the variables (symmetric boolean functions), it is clear that any change 
+in the ordering leaves the size of the ROBDD unaffected. \\[0.25cm]
+In general however, the chosen ordering will have a significant impact to the size. If we consider the boolean function:
+$(x_1 \vee x_2) \wedge (x_3 \vee x_4) \wedge ... \wedge (x_{2n-1} \vee x_{2n})$, choosing the ordering $(x_1,x_2,...x_{2n-1},x_{2n})$ will
+have produce a ROBDD with 2n+2 nodes while choosing an ordering us $(x_1,x_3,...,x_{2n-1},x2,x_4,...x_{2n})$ will produce an ROBDD of $2^{n+1}$.
+The level at which the result of the formula depends on a variable along with repetition, precedence and many other factors will affect the importance of the ordering.
+
+
+
+\subsection*{An algorithm for choosing ordering}
 
 \end{document}

@@ -1,8 +1,8 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper]{article}
 %\documentclass[a4paper,10pt]{scrartcl}
 
 \usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.9in]{geometry}
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{float}
@@ -59,7 +59,7 @@ Our system $\mathcal{M}_1$ (figure:~\ref{fig:m1}) can be described as following:
 \\[0.cm] 
 $\mathcal{P} = \{p,q,r,t\}$
 \\[0.10cm] 
-$\mathcal{M}_1 = \{\{ s_0,s_1,s_2,s_3 \} , \{ (s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1)   \} , \pi \}$
+$\mathcal{M}_1 = \{\{ s_0,s_1,s_2,s_3 \} , \{ (s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_2)   \} , \pi \}$
 \\[0.10cm] 
 $\pi(p) = \{s_1,s_3 \}$
 \\[0.10cm] 
@@ -159,7 +159,7 @@ $\pi(t) = \{ s_1 \}$
 
 
 \subsection*{Satisfiability}
-\subsubsection*{$\phi = Ft$}
+\subsubsection*{(a) LTL: $\phi = Ft$}
 \nholds 0 $Ft$ 
 \\[0.25cm]
 since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\in\pi(t)$
@@ -167,15 +167,15 @@ since for path \pathr $s_0^+$   no state $x_i \not\in\pi(t)$ since $s_0$ $\not\i
 \holds 2 $Ft$
 \\[0.25cm]
 since the only path that exist is \pathr $(s_2,s_1)^+$ and for $x_i = s_1$ $\Rightarrow s_1 \in\pi(t)$
-\subsubsection*{$\phi = \neg EG r$}
+\subsubsection*{(b) CTL: $\phi = \neg EG r$}
 $EGr =\neg AF\neg r \Rightarrow \neg EGr =\neg \neg AF\neg r= AF\neg r$ \\[0.25cm]
-\nholds 0 $AFr$ since for the path \pathr $s_0^+$ every state $x_i=s_0\in \pi(r)$ \\[0.25cm]
+\nholds 0 $AF\neg r$ since for the path \pathr $s_0^+$ every state $x_i=s_0\in \pi(r)$ \\[0.25cm]
 $\Rightarrow$ \nholds 0 $\neg EG r$ \\[0.25cm]
-\nholds 2 $AFr$ since for the only path \pathr $(s_2,s_1)^+$ every state $x_i=s_1\in \pi(r)$ or $x_i=s_2\in \pi(r)$\\[0.25cm]
+\nholds 2 $A\neg r$ since for the only path \pathr $(s_2,s_1)^+$ every state $x_i=s_1\in \pi(r)$ or $x_i=s_2\in \pi(r)$\\[0.25cm]
 $\Rightarrow$ \nholds 2 $\neg EG r$ 
 
 
-\subsubsection*{$\phi = E(tUq)$}
+\subsubsection*{(c) CTL: $\phi = E(tUq)$}
 \nholds 0 $E(tUq)$ 
 \\[0.25cm]
 since for every (and therefore for at least one) path \pathr $s_0,...$ at $s_0$, $s_0 \not\in \pi(t) \cup \pi(q)$.
@@ -185,10 +185,10 @@ since for every (and therefore for at least one) path \pathr $s_0,...$ at $s_0$,
 \\[0.25cm]
 since for the only path \pathr $(s_2,s_1)^+$ we have at $x_0 = s_2$, and \holds 2 $tUq$ since $s_2 \in \pi(q)$. This means that t is always true up to the point that q gets true.
 
-\subsubsection*{$\phi = E(FGp)$}
+\subsubsection*{(d) CTL*: $\phi = E(FGp)$}
 For this formula we first need to consider all the possible tuples of transition relation given by the $\rightarrow$ set:
 \\[0.25cm]
-$ \{(s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_1) \}$ 
+$ \{(s_0,s_0),(s_0,s_1),(s_0,s_3),(s_1,s_2),(s_2,s_1),(s_3,s_2) \}$ 
 \\[0.50cm]
 As we can see from the $\pi(p)$ set, no two concequtive states $x_i,x_{i+1} \in \pi(p)$ which means that for every state $s_i$: \nholds i $Gp$, \nholds i $FGp$
 and  \nholds i $E(FGp)$ \\[0.25cm]
@@ -199,14 +199,14 @@ Therefore we can say that: \\[0.25cm]
 \\[0.25cm]
 since no path exists which eventually gets forever p starting from either $s_0$ or $s_2$
 
-\subsubsection*{$\phi = EGr$}
+\subsubsection*{(e) CTL: $\phi = EGr$}
 $ EGr = \neg \neg EGr $ therefore from the $\phi = \neg EGr$ solution we can deduce that:\\[0.25cm]
 \holds 0 $EGr$ since \nholds 0 $\neg EGr\:$ since $true = \neg false$
 \\[0.25cm]
 and
 \\[0.25cm]
 \holds 2 $EGr$ since \nholds 2 $\neg EGr$  since $true = \neg false$
-\subsubsection*{$\phi = G(r \vee q)$}
+\subsubsection*{(f) LTL: $\phi = G(r \vee q)$}
 From the model we can see that the following are true:
 \\[0.25cm]
 $s_0 \in \pi(r) \cup \pi(q) $ since $s_0 \in \pi(r)$ so \holds 0 $r \vee q$
@@ -222,18 +222,18 @@ We can therefore say that for every state $s_i$, \holds i $G(r \vee q)$ since ev
 \holds 0 $G(r \vee q)$
 \\[0.25cm]
 \holds 2 $G(r \vee q)$
-\subsubsection*{$\phi = falseUp$}
+\subsubsection*{(g) LTL: $\phi = falseUp$}
 \nholds 0 $falseUp$
 since $s_0 \not\in \{ \} \cup \pi(p)$ therefore since the first state of the path does not fulfill p \\[0.25cm] $\Rightarrow$ false until p cannot be true.\\[0.25cm]
 \nholds 2 $falseUp$
 since $s_2 \not\in \{ \} \cup \pi(p)$ therefore since the first state of the path does not fulfill p \\[0.25cm] $\Rightarrow$ false until p cannot be true.
-\subsubsection*{$\phi = A(pU(EFq))$}
+\subsubsection*{(h) CTL: $\phi = A(pU(EFq))$}
 First, let's find which states satisfy $EFq$ \\[0.25cm]
 $\{s_0,s_1,s_2,s_3\}$ satisfy $EFq$ since all of them are either labelled $q$ \\[0.25cm]
 or have one of their next states satisfying $q$.\\[0.25cm]
 This intuitively says for all  states $s_i$, \holds i $EFq$. \\[0.25cm]
-This means that for all paths starting from every state of our model $pUEFq$ is true since we don't care about p being true since $EFq$ is always true at the first (initial) state. \\[0.25cm]
-We can therefore deduce from the above that for all states $s_i$, \holds i  $A(pUEFq)$ and: \\[0.25cm]
+This means that for all paths starting from every state of our model $pU(EFq)$ is true since we don't care about p being true since $EFq$ is always true at the first (initial) state. \\[0.25cm]
+We can therefore deduce from the above that for all states $s_i$, \holds i  $A(pU(EFq))$ and: \\[0.25cm]
 \holds 0 $A(pUEFq)$ \\[0.25cm]
 \holds 2 $A(pUEFq)$
 
@@ -264,9 +264,9 @@ We can therefore deduce from the above that for all states $s_i$, \holds i  $A(p
 \subsection*{Calculating}
 
 \subsection*{$\phi = p$}
-\hspace*{5mm} $SAT(p)=\{ s \in S \mid p\in L(s)\} = \{s_0,s_1,s_2\}$ 
+\hspace*{5mm} $SAT(p)=\{ s \in S \mid p\in L(s)\} = \{s_0,s_1,s_3\}$ 
 \\[0.25cm] 
-\hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_0,s_1,s_2\}$
+\hspace*{5mm} $\Rightarrow \llbracket \phi \rrbracket = \{s_0,s_1,s_3\}$
 \subsection*{$\phi = AGEFp$}
 \hspace*{5mm} $SAT(EFp)=SAT(E[trueUp])=SAT_{eu}(true,p)$ 
 \\[0.25cm] 
@@ -353,7 +353,231 @@ We can therefore deduce from the above that for all states $s_i$, \holds i  $A(p
 
 \newpage
 \section*{Question 3}
-\newpage
+\subsection*{As one module}
+\begin{verbatim}
+MODULE main
+VAR
+	t1: {no_coal,has_coal,waiting,tunnel};
+	t2: {no_coal,has_coal,waiting,tunnel};
+	t3: {no_coal,has_coal,waiting,tunnel};
+	cn: {0,1,2,3};
+ASSIGN
+	init(t1) := no_coal;
+	next(t1) := 
+		case
+			t1 = no_coal: has_coal;
+			t1 = has_coal: waiting;
+			t1 = waiting & (cn=1): tunnel;
+			t1 = waiting & !(cn=1): waiting;
+			t1 = tunnel: no_coal;
+		esac;
+
+	init(t2) := no_coal;
+	next(t2) := 
+		case
+			t2 = no_coal: has_coal;
+			t2 = has_coal: waiting;
+			t2 = waiting & (cn=2): tunnel;
+			t2 = waiting & !(cn=2): waiting;
+			t2 = tunnel: no_coal;
+		esac;
+
+	init(t3) := no_coal;
+	next(t3) := 
+		case
+			t3 = no_coal: has_coal;
+			t3 = has_coal: waiting;
+			t3 = waiting & (cn=3): tunnel;
+			t3 = waiting & !(cn=3): waiting;
+			t3 = tunnel: no_coal;
+		esac;
+	init(cn) := 0;
+
+	next(cn) := 
+		case
+			t1=waiting : 1;
+			t2=waiting : 2;
+			t3=waiting : 3;
+			1: 0;
+		esac;
+
+SPEC
+	AG(!(t1=tunnel & t2=tunnel & t3=tunnel))
+
+SPEC
+	AG(!(t1=tunnel) | AF(!(t1=tunnel)))
+
+SPEC
+	AG(!(t1=has_coal) | EF(!(t1=has_coal)))
+
+SPEC
+	AF(t1=tunnel)
+
+\end{verbatim}
+reachable states: 11 ($2^{3.45943}$) out of 256 ($2^8$)
+
+\subsubsection*{CUDD statistics}
+\begin{verbatim}
+
+**** CUDD modifiable parameters ****
+Hard limit for cache size: 2730666
+Cache hit threshold for resizing: 30%
+Garbage collection enabled: yes
+Limit for fast unique table growth: 1638400
+Maximum number of variables sifted per reordering: 1000
+Maximum number of variable swaps per reordering: 2000000
+Maximum growth while sifting a variable: 1.2
+Dynamic reordering of BDDs enabled: no
+Default BDD reordering method: 4
+Dynamic reordering of ZDDs enabled: no
+Default ZDD reordering method: 4
+Realignment of ZDDs to BDDs enabled: no
+Realignment of BDDs to ZDDs enabled: no
+Dead nodes counted in triggering reordering: no
+Group checking criterion: 7
+Recombination threshold: 0
+Symmetry violation threshold: 0
+Arc violation threshold: 0
+GA population size: 0
+Number of crossovers for GA: 0
+Next reordering threshold: 4004
+**** CUDD non-modifiable parameters ****
+Memory in use: 10544032
+Peak number of nodes: 1022
+Peak number of live nodes: 498
+Number of BDD variables: 17
+Number of ZDD variables: 0
+Number of cache entries: 262144
+Number of cache look-ups: 1047
+Number of cache hits: 207
+Number of cache insertions: 874
+Number of cache collisions: 5
+Number of cache deletions: 0
+Cache used slots = 0.33% (expected 0.33%)
+Soft limit for cache size: 18432
+Number of buckets in unique table: 4608
+Used buckets in unique table: 14.15% (expected 14.15%)
+Number of BDD and ADD nodes: 722
+Number of ZDD nodes: 0
+Number of dead BDD and ADD nodes: 238
+Number of dead ZDD nodes: 0
+Number of LIVE BDD and ADD nodes: 484
+Number of LIVE ZDD nodes: 0
+Total number of nodes allocated: 722
+Total number of nodes reclaimed: 190
+Garbage collections so far: 0
+Time for garbage collection: 0.00 sec
+Reorderings so far: 0
+Time for reordering: 0.00 sec 
+\end{verbatim}
+
+\subsection*{Modular}
+\begin{verbatim}
+MODULE train(signal,label)
+VAR 
+	state : {no_coal, has_coal, waiting, tunnel};
+ASSIGN
+ 	init(state) := no_coal;
+ 	next(state) := 
+ 	case
+ 		(state = no_coal): has_coal;
+ 		(state = has_coal) : waiting;
+ 		(state = waiting) & (signal = label) : tunnel;
+ 		(state = tunnel) : no_coal;
+ 		1: state;
+ 	esac;
+
+MODULE controller(t1, t2, t3)
+VAR
+  signal: {0,1,2,3};
+
+ASSIGN
+ init(signal):= 0;
+ next(signal):=
+	case
+		t1.state = waiting : 1;
+		t2.state = waiting : 2;
+		t3.state = waiting : 3;
+		1: 0;
+	esac;
+
+MODULE main 
+ VAR
+  	cn: controller(t1,t2,t3);
+	t1: train(cn.signal,1);
+ 	t2: train(cn.signal,2);
+ 	t3: train(cn.signal,3);
+
+
+ SPEC
+  AG(!(t1.state=tunnel & t2.state=tunnel & t3.state=tunnel));
+ SPEC
+  AG(t1.state=tunnel -> AF!(t1.state=tunnel));
+ SPEC
+  AG(t1.state=has_coal -> EF !(t1.state=has_coal));
+ SPEC
+  AF(t1.state=tunnel);
+ SPEC
+  AG(EF(t1.state=tunnel));
+\end{verbatim}
+reachable states: 11 ($2^{3.45943}$) out of 256 ($2^8$)
+\subsubsection*{CUDD statistics}
+\begin{verbatim}
+ **** CUDD modifiable parameters ****
+Hard limit for cache size: 2730666
+Cache hit threshold for resizing: 30%
+Garbage collection enabled: yes
+Limit for fast unique table growth: 1638400
+Maximum number of variables sifted per reordering: 1000
+Maximum number of variable swaps per reordering: 2000000
+Maximum growth while sifting a variable: 1.2
+Dynamic reordering of BDDs enabled: no
+Default BDD reordering method: 4
+Dynamic reordering of ZDDs enabled: no
+Default ZDD reordering method: 4
+Realignment of ZDDs to BDDs enabled: no
+Realignment of BDDs to ZDDs enabled: no
+Dead nodes counted in triggering reordering: no
+Group checking criterion: 7
+Recombination threshold: 0
+Symmetry violation threshold: 0
+Arc violation threshold: 0
+GA population size: 0
+Number of crossovers for GA: 0
+Next reordering threshold: 4004
+**** CUDD non-modifiable parameters ****
+Memory in use: 10544032
+Peak number of nodes: 1022
+Peak number of live nodes: 491
+Number of BDD variables: 17
+Number of ZDD variables: 0
+Number of cache entries: 262144
+Number of cache look-ups: 888
+Number of cache hits: 243
+Number of cache insertions: 680
+Number of cache collisions: 3
+Number of cache deletions: 0
+Cache used slots = 0.26% (expected 0.26%)
+Soft limit for cache size: 18432
+Number of buckets in unique table: 4608
+Used buckets in unique table: 12.15% (expected 12.59%)
+Number of BDD and ADD nodes: 635
+Number of ZDD nodes: 0
+Number of dead BDD and ADD nodes: 168
+Number of dead ZDD nodes: 0
+Number of LIVE BDD and ADD nodes: 467
+Number of LIVE ZDD nodes: 0
+Total number of nodes allocated: 635
+Total number of nodes reclaimed: 137
+Garbage collections so far: 0
+Time for garbage collection: 0.00 sec
+Reorderings so far: 0
+Time for reordering: 0.00 sec
+
+
+\end{verbatim}
+
+  \newpage
 \section*{Question 4}
 Let $\phi = (x_1 \wedge x_2) \vee (y_1 \wedge y_2) $, the following truth table is derived to help us with our calculations
 
@@ -1069,7 +1293,27 @@ if they have compatible variable orderings.
 
 \end{figure}
 
-\subsection*{Discuss how ordering impacts ROBDD}
-\subsection*{Suggest an algorithm for choosing ordering}
+\subsection*{How ordering impacts the ROBDD size.}
+The chosen variable ordering can have a very significant impact on the size of the ROBDD as we can see from the above. The OBDDs' 
+size tend to be very sensitive to the chosen ordering. 
+This however is not always the case and if we consider the OBDDs representing functions such as the parity functions and in principle
+the functions that are themselves independent of the order of the variables (symmetric boolean functions), it is clear that any change 
+in the ordering leaves the size of the ROBDD unaffected. \\[0.25cm]
+In general however, the chosen ordering will have a significant impact to the size. If we consider the boolean function:
+$(x_1 \vee x_2) \wedge (x_3 \vee x_4) \wedge ... \wedge (x_{2n-1} \vee x_{2n})$, choosing the ordering $(x_1,x_2,...x_{2n-1},x_{2n})$ will
+have produce a ROBDD with 2n+2 nodes while choosing an ordering us $(x_1,x_3,...,x_{2n-1},x2,x_4,...x_{2n})$ will produce an ROBDD of $2^{n+1}$.
+The level at which the result of the formula depends on a variable along with repetition, precedence and many other factors will affect the importance of the ordering.
+
+
+
+\subsection*{An algorithm for choosing ordering}
+The problem of choosing the variable ordering to produce an ROBDD of minimum size is similar to the Travelling Salesman Problem of finding the minimum path 
+but propably much harder to be pictured and reason about it. Finding the minimum size is only guaranteed when comparing the resulting ROBDD of every ordering 
+from the $n!$ possible permutations and it is NP-complete. The same goes for finding good or ''better''  ordering instead of the best. THis hoever can be done 
+using heuristics in a less expensive manner.\\[0.25cm]
+One way is by simplifying our formula using equivalences and factorisation to eliminate repetition. We can then examine and find dependancy chains. The more 
+dependent the result of a formula, the higher ordering the variable should have. Another way to be considered is the use of a hill climbing procedure which will
+redorder the given ordering such as the size decreases. A similar approach can be achieved by shifting the variables one by one until a minimum is reached. \\[0.25cm]
+None of these methods can however guarantee a ''minimum'' size but only a better one.
 
 \end{document}
